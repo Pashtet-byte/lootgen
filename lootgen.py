@@ -1,24 +1,28 @@
 import random
+
 from rich.console import Console
 from rich.table import Table
 
+
 def simulate_loot(num_chests: int = 10, rare_chance: float = 0.05) -> None:
     console = Console()
-    table = Table(title="LootGen: Симуляция лута")
-    table.add_column("Сундук #", justify="right")
-    table.add_column("Предмет")
-    table.add_column("Редкость")
+    table = Table(title="Loot Simulation")
 
-    for i in range(1, num_chests + 1):
+    table.add_column("Chest", justify="center")
+    table.add_column("Loot", justify="left")
+    table.add_column("Rarity", justify="center")
+
+    for chest_num in range(1, num_chests + 1):
         if random.random() < rare_chance:
-            item = "Редкий самоцвет"
-            rarity = "Редкий"
+            loot = "Epic Sword"
+            rarity = "Rare"
         else:
-            item = random.choice(["Меч", "Щит", "Зелье"])
-            rarity = "Обычный"
-        table.add_row(str(i), item, rarity)
+            loot = "Wooden Shield"
+            rarity = "Common"
+        table.add_row(str(chest_num), loot, rarity)
 
     console.print(table)
+
 
 if __name__ == "__main__":
     simulate_loot(5)
