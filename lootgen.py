@@ -1,7 +1,17 @@
-import random
+import subprocess
+import sys
 
-from rich.console import Console
-from rich.table import Table
+# Проверка и установка rich при запуске
+try:
+    from rich.console import Console
+    from rich.table import Table
+except ImportError:
+    print("Библиотека 'rich' не найдена. Устанавливаем...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "rich"])
+    from rich.console import Console
+    from rich.table import Table
+
+import random
 
 
 def simulate_loot(num_chests: int = 10, rare_chance: float = 0.05) -> None:
